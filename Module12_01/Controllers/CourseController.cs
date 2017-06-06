@@ -36,19 +36,24 @@ namespace Module12_01.Controllers
             return result;
         }
 
-        // POST: api/Course
-        public void Post([FromBody]string value)
+        // POST: api/Course 新增
+        public void Post([FromBody]Course course)
         {
+            courses.Add(course);
         }
 
         // PUT: api/Course/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Course course)
         {
+            var item = courses.Find(c => c.Id == course.Id);
+            item.Name = course.Name;
         }
 
         // DELETE: api/Course/5
         public void Delete(int id)
         {
+            var course = courses.Find(c => c.Id == id);
+            courses.Remove(course);
         }
     }
 }
