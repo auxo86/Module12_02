@@ -11,7 +11,7 @@ namespace Module12_01.Controllers
     public class CourseController : ApiController
     {
         //Test Data
-        private static List<Course> Courses = new List<Course>
+        private static List<Course> courses = new List<Course>
         {
             new Course {Id=1, Name="MVC"},
             new Course {Id=2, Name="WebForm"},
@@ -19,15 +19,21 @@ namespace Module12_01.Controllers
         };
 
         // GET: api/Course
-        public IEnumerable<string> Get()
+        public IEnumerable<Course> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            return  courses;
         }
 
         // GET: api/Course/5
-        public string Get(int id)
+        public Course Get(int id)
         {
-            return "value";
+            var result = courses.Find(c => c.Id == id);
+            //var query = from c in courses
+            //            where c.Id == id
+            //            select c;
+             
+            return result;
         }
 
         // POST: api/Course
